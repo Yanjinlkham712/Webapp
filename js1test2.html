@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Page with JavaScript and JSON</title>
+    <style>
+        /* Add some basic styling for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .flexSer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .anotherSer {
+            width: 620px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            column-gap: 20px;
+        }
+        .anotherSer ul {
+            display: flex; 
+            flex-direction: row; 
+            width: 35ch; 
+            padding-left: 0; 
+            margin: 0;
+            width: 300px;
+        }
+        .anotherSer ul li{
+            width: 10ch; 
+            height: 1em; 
+            background-color: gainsboro;
+            margin: 2px;
+            list-style-type: none;
+        }
+        .anotherSer p {
+            height: auto;
+            width: 35ch;
+        }
+        .anotherSer img {
+            width: 300px; 
+            height: 210px;
+            align-self: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<section style="width: auto; height: auto;">
+    <h2>Сонирхож магадгүй газрууд</h2>
+    <div class="flexSer"></div>
+</section>
+
+<script>
+    // Sample JSON data
+    const jsonData = [
+        {
+            imgSrc: "anoSer1.jpg",
+            title: "Nameste 2",
+            time: "12:00 PM",
+            rating: {
+                value: 4.5,
+                count: 385
+            },
+            description: "At Namaste, Our valued guests are the heart and soul of our business. We believe in creating a delightful and satisfying experience for each one of you."
+        },
+        {
+            imgSrc: "anoSer1.jpg",
+            title: "Nameste 2",
+            time: "12:00 PM",
+            rating: {
+                value: 4.5,
+                count: 385
+            },
+            description: "At Namaste, Our valued guests are the heart and soul of our business. We believe in creating a delightful and satisfying experience for each one of you."
+        },
+        // Add more objects as needed
+    ];
+
+    // Function to render the dynamic content
+    function renderDynamicContent() {
+        const dynamicContent = document.querySelector(".flexSer");
+
+        // Clear previous content
+        dynamicContent.innerHTML = "";
+
+        // Iterate through the JSON data and create article elements
+        jsonData.forEach(data => {
+            const article = document.createElement("article");
+            article.className = "anotherSer"; 
+
+            article.innerHTML = `
+                <img src="${data.imgSrc}" alt="">
+                <div>
+                    <h3>${data.title}</h3>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p><span>Нээлттэй </span><time>${data.time}</time> хүртэл</p>
+                    <p>
+                        <div>
+                            <meter class="rating" min="0" max="5" value="${data.rating.value}" title="${data.rating.value} out of 5 stars"></meter>${data.rating.value} (<span>${data.rating.count}</span> үзэлт)
+                        </div>
+                    </p>
+                    <p>${data.description}</p>
+                </div>
+            `;
+            dynamicContent.appendChild(article);
+        });
+    }
+
+    // Call the function to render the initial dynamic content
+    renderDynamicContent();
+</script>
+
+</body>
+</html>
